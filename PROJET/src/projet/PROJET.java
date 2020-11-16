@@ -52,8 +52,7 @@ public class PROJET {
         MemberDB mdb = new MemberDB();
         System.out.println(mdb.getPassword("serenatay"));
         System.out.println(mdb.getAge("serenatay"));
-        //mdb.newMember("tommytran", "coucou", 20);
-        //Member member = new Member("tommy", "coucou");
+        mdb.newMember("tommytran", "coucou", 27);
         
         
         

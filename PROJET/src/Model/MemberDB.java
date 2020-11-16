@@ -84,11 +84,21 @@ public class MemberDB {
         
         try {
             Connection conn = DriverConnection.getConnection();
-            Statement myStmt = conn.createStatement();
-            String query = "INSERT INTO member (username, password, age) VALUES ("+username+", "+password+", "+age+");";
+            
+            //Statement stmt = conn.createStatement();
+            
+            String query = "INSERT INTO member (username, password, age) VALUES (?,?,?);";
+           PreparedStatement ps = conn.prepareStatement(query);
+            
            
-            myStmt.executeUpdate(query);
-            myStmt.close();
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setInt(3, age);
+           
+           
+            ps.executeUpdate();
+            ps.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }

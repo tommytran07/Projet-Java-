@@ -12,9 +12,7 @@ import javax.swing.*;
  * @author Tommy
  */
 public class Login extends javax.swing.JFrame {
-    Connection con = null;
-    PreparedStatement myStmt = null;
-    ResultSet rs = null;
+    
     /**
      * Creates new form Login
      */
@@ -137,29 +135,6 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:    
-        try {
-            String query = "SELECT * FROM `member` WHERE username=? and password=?" ;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projetjava?useSSL=false&serverTimezone=UTC", "root", "");
-            myStmt =  con.prepareStatement(query);
-
-            myStmt.setString(1, txtuser.getText());
-            myStmt.setString(2, txtpswd.getText());
-
-            rs = myStmt.executeQuery();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Connected !" );
-                //Home home = new Home();
-                //home.setVisible(true);
-                //this.setVisible(false);
-
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Username and password do not match! ");
-            }
-            con.close();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

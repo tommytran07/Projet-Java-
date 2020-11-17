@@ -41,5 +41,13 @@ public class Member {
 
     }
     
-    
+    public String[] viewMember()
+    {
+        String[] member = new String[3];
+        member[0] = String.valueOf(_username);
+        member[1] = String.valueOf(_password);
+        member[2] = String.valueOf(_age);
+        
+        return member;
+    }
 }

@@ -85,17 +85,20 @@ public class MemberDB {
         try {
             Connection conn = DriverConnection.getConnection();
             
-            //Statement stmt = conn.createStatement();
-            
             String query = "INSERT INTO member (username, password, age) VALUES (?,?,?);";
-           PreparedStatement ps = conn.prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             
-           
+           /**
+            * Correspond au VALUES (?,?,?) avec chaque pt d'interrogation correspondant à ce qu'il faut 
+            * 1er ? -> username 
+            * 2e ? -> password
+            * 3e ? -> age
+            */
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setInt(3, age);
            
-           
+            // on met rien dans les parentheses, pas de query dans la parenthese vu que c'est un preparedstatement
             ps.executeUpdate();
             ps.close();
             

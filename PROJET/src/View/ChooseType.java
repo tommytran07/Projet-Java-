@@ -9,13 +9,14 @@ package View;
  *
  * @author serena
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class ChooseType extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public ChooseType() {
         initComponents();
+        setVisible(true);
     }
 
     /**
@@ -28,26 +29,36 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        CustomerBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        EmployeeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        jButton1.setText("Customer");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(260, 100, 240, 100);
+        CustomerBtn.setText("Customer");
+        CustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CustomerBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CustomerBtn);
+        CustomerBtn.setBounds(260, 100, 240, 100);
 
-        jButton2.setText("Employee");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(260, 250, 240, 100);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Tommy\\Documents\\GitHub\\Projet-Java-\\Images\\Nimbus.png")); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(102, 255, 255));
         jLabel1.setText(" ");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 950, 610);
+        jLabel1.setBounds(0, 0, 930, 610);
+
+        EmployeeBtn.setText("Employee");
+        EmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmployeeBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(EmployeeBtn);
+        EmployeeBtn.setBounds(260, 250, 240, 100);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,6 +74,19 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerBtnActionPerformed
+        // TODO add your handling code here:
+        new Login();
+        dispose();
+               
+    }//GEN-LAST:event_CustomerBtnActionPerformed
+
+    private void EmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeBtnActionPerformed
+        // TODO add your handling code here:
+        new LoginEmployee();
+        dispose();
+    }//GEN-LAST:event_EmployeeBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -70,8 +94,8 @@ public class NewJFrame extends javax.swing.JFrame {
        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton CustomerBtn;
+    private javax.swing.JButton EmployeeBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

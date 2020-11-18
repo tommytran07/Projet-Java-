@@ -8,6 +8,7 @@ package Model;
 import projet.DriverConnection;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import projet.MemberException;
 
 /**
  * Classe modèle où on implémente toutes les méthodes pour relier la base de
@@ -20,91 +21,234 @@ public class MemberDB {
 
     /**
      * on recupère le mot de passe d'un membre à partir de son username
+     *
      * @param username
-     * @return 
+     * @return
      */
-    public String getPassword(String username) {
-        String password = "";
+    public String getName(String username) throws MemberException {
+        String name = "";
         try {
-            
+
             Connection conn = DriverConnection.getConnection();
             String query = "SELECT * FROM `member` WHERE `username`=? ";
             PreparedStatement ps = conn.prepareStatement(query);
-            
+
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()) {
-                password = rs.getString("password");
+
+            if (rs.next()) {
+                name = rs.getString("name");
+            } else {
+                /// Si le compte n'existe pas, ou bien si l'utilisateur ne rentre rien alors on lance une exception
+                 throw new MemberException("Enter valid credentials");
             }
-            else 
-                JOptionPane.showMessageDialog(null, "The account "+ username + " does not exist");
-            
+
             ps.close();
-            
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return name;
+    }
+    public String getUsername() throws MemberException {
+        String username = "";
+        try {
+
+            Connection conn = DriverConnection.getConnection();
+            String query = "SELECT username FROM `member`";
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                username = rs.getString("username");
+            } else {
+                /// Si le compte n'existe pas, ou bien si l'utilisateur ne rentre rien alors on lance une exception
+                 throw new MemberException("Enter valid credentials");
+            }
+
+            ps.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return username;
+    }
+    public String getPassword(String username) throws MemberException {
+        String password = "";
+        try {
+
+            Connection conn = DriverConnection.getConnection();
+            String query = "SELECT password FROM `member` WHERE `username`=? ";
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                password = rs.getString("password");
+            } else {
+                /// Si le compte n'existe pas, ou bien si l'utilisateur ne rentre rien alors on lance une exception
+                throw new MemberException("Enter valid credentials");
+            }
+
+            ps.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return password;
     }
-    
+
     /**
      * récupère l'age du membre en fonction de l'username
+     *
      * @param username
-     * @return 
+     * @return
      */
-    public int getAge(String username) {
-        
+    public int getAge(String username) throws MemberException {
+
         int age = 0;
         try {
-            
+
             Connection conn = DriverConnection.getConnection();
             String query = "SELECT * FROM member WHERE username=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()) {
+
+            if (rs.next()) {
                 age = Integer.parseInt(rs.getString("age")); /// On convertit le string en int
+            } else {
+                /// Si le compte n'existe pas, ou bien si l'utilisateur ne rentre rien alors on lance une exception
+                throw new MemberException("Enter valid credentials");
             }
-            else 
-                JOptionPane.showMessageDialog(null, "The account "+ username + "does not exist");
-            
             ps.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return age;
-        
+
     }
-    
-    public void newMember(String username, String password, int age) {
-        
+
+    public void newMember(String name, String username, String password, int age) {
+
         try {
             Connection conn = DriverConnection.getConnection();
-            
-            String query = "INSERT INTO member (username, password, age) VALUES (?,?,?);";
+
+            String query = "INSERT INTO member (name, username, password, age) VALUES (?,?,?,?);";
             PreparedStatement ps = conn.prepareStatement(query);
-            
-           /**
-            * Correspond au VALUES (?,?,?) avec chaque pt d'interrogation correspondant à ce qu'il faut 
-            * 1er ? -> username 
-            * 2e ? -> password
-            * 3e ? -> age
-            */
-            ps.setString(1, username);
-            ps.setString(2, password);
-            ps.setInt(3, age);
-           
+
+            /**
+             * Correspond au VALUES (?,?,?) avec chaque pt d'interrogation
+             * correspondant à ce qu'il faut 1er ? -> username 2e ? -> password
+             * 3e ? -> age
+             */
+            ps.setString(1, name);
+            ps.setString(2, username);
+            ps.setString(3, password);
+            ps.setInt(4, age);
+
             // on met rien dans les parentheses, pas de query dans la parenthese vu que c'est un preparedstatement
             ps.executeUpdate();
             ps.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public String[] getColums() throws SQLException
+    {
+        String[] colNames;
+        
+        Connection conn = DriverConnection.getConnection();
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        String query = "SELECT * FROM `member`";
+        ResultSet rs = stmt.executeQuery(query);
+        ResultSetMetaData meta = rs.getMetaData();
+        colNames = new String[meta.getColumnCount()];
+        for(int i = 0; i< meta.getColumnCount(); i++)
+        {
+            colNames[i] = meta.getColumnLabel(i+1);;
+        }
+        stmt.close();
+        return colNames;
+    }
+    
+    
+    public void getAllMembers() throws SQLException, MemberException {
+        
+        
+        try {
+            Connection conn = DriverConnection.getConnection();
+        Statement stmt = conn.createStatement();
+        
+        String query = "SELECT * from member";
+        
+        ResultSet rs = stmt.executeQuery(query);
+        
+        if (rs.next()) {
+            do {
+                String name = rs.getString("name");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                int age = Integer.parseInt(rs.getString("age"));
+                
+                String table[] = {name, username, password, String.valueOf(age)};
+                
+            } while (rs.next());
+        }
+        else {
+            throw new MemberException("No records were found");
+        }
+          stmt.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public String[][] getTableData() throws SQLException
+    {
+        String[][] tableData;
+        
+        Connection conn = DriverConnection.getConnection();
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        String query = "SELECT * FROM member";
+        ResultSet rs = stmt.executeQuery(query);
+        ResultSetMetaData meta = rs.getMetaData();
+        
+        rs.last(); 
+        int nbRows = rs.getRow();
+        rs.first();
+        
+        tableData = new String[nbRows][meta.getColumnCount()];
+        for(int row = 0; row<nbRows ; row++){
+            for(int col = 0; col< meta.getColumnCount(); col++){
+                tableData[row][col] = meta.getColumnLabel(col+1);
+            }
+            rs.next();
+        }
+        stmt.close();
+        conn.close();
+        return tableData;
+    }
+    
+    public void updateName(String name) throws SQLException {
+        
+        Connection conn = DriverConnection.getConnection();
+        Statement stmt = conn.createStatement();
+        String query = " UPDATE member SET name= "+name+" ";
+        stmt.executeUpdate(query);
+        stmt.close();
+        conn.close();
+        }
     
 }
+

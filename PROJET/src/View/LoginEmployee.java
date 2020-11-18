@@ -41,6 +41,7 @@ public class LoginEmployee extends javax.swing.JFrame {
         BackBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Employee login");
 
         jLabel1.setText("EMPLOYEE LOGIN");
 

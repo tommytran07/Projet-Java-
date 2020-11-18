@@ -46,6 +46,7 @@ public class Login extends javax.swing.JFrame {
         GuestBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Customer login page");
 
         jLabel1.setText("LOGIN");
 

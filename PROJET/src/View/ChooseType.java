@@ -30,8 +30,8 @@ public class ChooseType extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         CustomerBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         EmployeeBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,11 +46,6 @@ public class ChooseType extends javax.swing.JFrame {
         jPanel1.add(CustomerBtn);
         CustomerBtn.setBounds(260, 100, 240, 100);
 
-        jLabel1.setBackground(new java.awt.Color(102, 255, 255));
-        jLabel1.setText(" ");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 930, 610);
-
         EmployeeBtn.setText("Employee");
         EmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,15 +55,21 @@ public class ChooseType extends javax.swing.JFrame {
         jPanel1.add(EmployeeBtn);
         EmployeeBtn.setBounds(260, 250, 240, 100);
 
+        jLabel1.setBackground(new java.awt.Color(102, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/fond_colore.png"))); // NOI18N
+        jLabel1.setText(" ");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 910, 610);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
         );
 
         pack();

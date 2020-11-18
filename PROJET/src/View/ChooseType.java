@@ -5,6 +5,9 @@
  */
 package View;
 
+import View.Employee.LoginEmployee;
+import View.Member.Login;
+
 /**
  *
  * @author serena
@@ -56,7 +59,7 @@ public class ChooseType extends javax.swing.JFrame {
         EmployeeBtn.setBounds(260, 250, 240, 100);
 
         jLabel1.setBackground(new java.awt.Color(102, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/fond_colore.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/fond_colore.png"))); // NOI18N
         jLabel1.setText(" ");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 910, 610);

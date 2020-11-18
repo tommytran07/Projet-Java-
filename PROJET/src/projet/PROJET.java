@@ -7,7 +7,7 @@ package projet;
 
 import Controller.Member;
 import Model.MemberDB;
-import View.Login;
+import View.Member.Login;
 import View.ChooseType;
 import java.sql.SQLException;
 

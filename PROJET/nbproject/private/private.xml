@@ -3,18 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Login.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/ChangeName.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/MainPage.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Model/EmployeeDB.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/ViewFlights.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/Login.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Controller/Employee.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/PROJET.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/MainPage.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Register.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/LoginEmployee.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/MemberException.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/MainPageEmployee.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Employee/LoginEmployee.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/ViewFlights.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Employee/MainPageEmployee.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/EmployeeException.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/SearchFlight.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Controller/Member.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Model/MemberDB.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/ChooseType.java</file>

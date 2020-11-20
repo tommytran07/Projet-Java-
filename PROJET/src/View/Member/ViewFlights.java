@@ -125,20 +125,20 @@ public class ViewFlights extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        BackBtn.setBackground(new java.awt.Color(255, 102, 51));
-        BackBtn.setForeground(new java.awt.Color(255, 255, 255));
-        BackBtn.setText("Back");
+        BackBtn.setBackground(new java.awt.Color(255, 153, 0));
+        BackBtn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        BackBtn.setText("BACK");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackBtnActionPerformed(evt);
             }
         });
         jPanel1.add(BackBtn);
-        BackBtn.setBounds(20, 10, 110, 24);
+        BackBtn.setBounds(20, 30, 140, 50);
 
-        jTable1.setBackground(new java.awt.Color(204, 204, 255));
-        jTable1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
+        jTable1.setBackground(new java.awt.Color(0, 0, 0));
+        jTable1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 204, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -175,7 +175,7 @@ public class ViewFlights extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Flight no", "Departure city", "Arrival city", "Departure date", "Arrival date", "Departure time", "Arrival time", "Price", "Class"
+                "Flight no", "To", "From", "Depart", "Return", "Departure time", "Arrival time", "Price", "Class"
             }
         ) {
             Class[] types = new Class [] {
@@ -186,15 +186,16 @@ public class ViewFlights extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.setGridColor(new java.awt.Color(102, 102, 102));
         jScrollPane2.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 50, 900, 530);
+        jScrollPane2.setBounds(80, 140, 780, 380);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/fond_colore.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 0, 1246, 895);
+        jLabel2.setBounds(0, 0, 1239, 895);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,13 +203,13 @@ public class ViewFlights extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 937, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

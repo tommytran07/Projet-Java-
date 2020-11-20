@@ -34,29 +34,39 @@ public class ChooseType extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         CustomerBtn = new javax.swing.JButton();
         EmployeeBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        CustomerBtn.setText("Customer");
+        CustomerBtn.setBackground(new java.awt.Color(255, 153, 0));
+        CustomerBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        CustomerBtn.setText("CUSTOMER");
         CustomerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CustomerBtnActionPerformed(evt);
             }
         });
         jPanel1.add(CustomerBtn);
-        CustomerBtn.setBounds(260, 100, 240, 100);
+        CustomerBtn.setBounds(320, 180, 240, 100);
 
-        EmployeeBtn.setText("Employee");
+        EmployeeBtn.setBackground(new java.awt.Color(255, 153, 0));
+        EmployeeBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        EmployeeBtn.setText("EMPLOYEE");
         EmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmployeeBtnActionPerformed(evt);
             }
         });
         jPanel1.add(EmployeeBtn);
-        EmployeeBtn.setBounds(260, 250, 240, 100);
+        EmployeeBtn.setBounds(320, 310, 240, 100);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Projet-Java--2\\map.png")); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 510, 350);
 
         jLabel1.setBackground(new java.awt.Color(102, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/fond_colore.png"))); // NOI18N
@@ -101,6 +111,7 @@ public class ChooseType extends javax.swing.JFrame {
     private javax.swing.JButton CustomerBtn;
     private javax.swing.JButton EmployeeBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

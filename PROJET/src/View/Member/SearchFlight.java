@@ -8,10 +8,14 @@ package View.Member;
 import View.Member.MainPage;
 import Controller.Flight;
 import Controller.Member;
+import Controller.Ticket;
 import java.util.ArrayList;
 import java.sql.*;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import projet.DriverConnection;
+
 
 /**
  *
@@ -37,7 +41,16 @@ public class SearchFlight extends javax.swing.JFrame {
         });
         
     }
+    
+    public SearchFlight() {
+        this.member = null;
+        initComponents();
+        findFlight();
+        setVisible(true);
+    }
 
+   
+    
     public ArrayList<Flight> flightList(String City, String City2, String Date, String Date2, String classe) {
         ArrayList<Flight> flightList = new ArrayList<Flight>();
         Statement st;
@@ -103,6 +116,7 @@ public class SearchFlight extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        selectBtn = new javax.swing.JButton();
         BackBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -122,6 +136,14 @@ public class SearchFlight extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        selectBtn.setText("Select");
+        selectBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(selectBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 120, 50));
+
         BackBtn.setBackground(new java.awt.Color(255, 153, 51));
         BackBtn.setText("Back");
         getContentPane().add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, 30));
@@ -133,7 +155,7 @@ public class SearchFlight extends javax.swing.JFrame {
                 searchBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 110, 50));
+        getContentPane().add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 110, 50));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +173,7 @@ public class SearchFlight extends javax.swing.JFrame {
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 180, 40));
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 180, 40));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Economy", "First Class" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Economy", "Business" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -228,7 +250,7 @@ public class SearchFlight extends javax.swing.JFrame {
             findFlight();
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
         if(member == null) {
             new MainPage();
@@ -250,6 +272,63 @@ public class SearchFlight extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    
+    private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        SelectedFlight selectedFlight = new SelectedFlight(member);
+        TableModel model = jTable1.getModel();
+        
+        String name = member.getName();
+        
+        //String guest = "Guest";
+        /*
+        if(member.getName().equals(null)){
+            member.setName("Guest");
+        }
+        else{
+          name = member.getName();
+        }
+        */
+        String flightno = model.getValueAt(index, 0).toString();
+        String dcity = model.getValueAt(index, 1).toString();
+        String acity = model.getValueAt(index, 2).toString();
+        String ddate = model.getValueAt(index, 3).toString();
+        String adate = model.getValueAt(index, 4).toString();
+        String dtime = model.getValueAt(index, 5).toString();
+        String atime = model.getValueAt(index, 6).toString();
+        double price = Double.parseDouble(model.getValueAt(index, 7).toString());
+        String fclass = model.getValueAt(index, 8).toString();
+        
+        selectedFlight.setVisible(true);
+        selectedFlight.pack();
+        selectedFlight.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        selectedFlight.flightnoLabel.setText(flightno);
+        selectedFlight.dcityLabel.setText(dcity);
+        selectedFlight.acityLabel.setText(acity);
+        selectedFlight.ddateLabel.setText(ddate);
+        selectedFlight.adateLabel.setText(adate);
+        selectedFlight.dtimeLabel.setText(dtime);
+        selectedFlight.atimeLabel.setText(atime);
+        selectedFlight.priceLabel.setText(String.valueOf(price));
+        selectedFlight.fclassLabel.setText(fclass);
+        
+        
+        
+        selectedFlight.customerName.setText(name);
+        /*
+        if (member.getName().equals(null)) {
+            member.setName("Guest");
+            selectedFlight.customerName.setText(name);
+        }
+        */
+        
+        
+        
+        dispose();
+    }//GEN-LAST:event_selectBtnActionPerformed
     
     /**
      * @param args the command line arguments
@@ -305,5 +384,6 @@ public class SearchFlight extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JButton selectBtn;
     // End of variables declaration//GEN-END:variables
 }

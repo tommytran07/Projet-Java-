@@ -55,8 +55,8 @@ public class LoginEmployee extends javax.swing.JFrame {
 
         jLabel3.setText("Password");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
-        getContentPane().add(UsernameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 150, -1));
-        getContentPane().add(PasswordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 150, -1));
+        getContentPane().add(UsernameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 150, -1));
+        getContentPane().add(PasswordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 150, -1));
 
         LoginBtn.setBackground(new java.awt.Color(255, 153, 0));
         LoginBtn.setText("Login");
@@ -89,7 +89,7 @@ public class LoginEmployee extends javax.swing.JFrame {
         {
             String username = UsernameTxtField.getText();
             String password = PasswordTextField.getText();
-            new MainPageEmployee(new Employee(username, password));                                      
+            new HomePageEmployee(new Employee(username, password));                                      
             dispose();
             
         } 

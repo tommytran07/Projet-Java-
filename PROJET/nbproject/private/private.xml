@@ -4,22 +4,29 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Model/EmployeeDB.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Employee/MemberRecords.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/Payment.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/DriverConnection.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/Login.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Controller/Employee.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/PROJET.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/MainPage.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/PROJET.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Register.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/MemberException.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Employee/LoginEmployee.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/ViewFlights.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Employee/MainPageEmployee.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/EmployeeException.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Employee/LoginEmployee.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Images/fond_colore.png</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/SearchFlight.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Controller/Member.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Model/MemberDB.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/ChooseType.java</file>
-            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Model/FlightDB.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/projet/EmployeeException.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Employee/MainPageEmployee.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Employee/HomePageEmployee.java</file>
             <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Controller/Flight.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Model/MemberDB.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Model/FlightDB.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/ChooseType.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Controller/Member.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/Controller/Ticket.java</file>
+            <file>file:/C:/Users/Tommy/Documents/GitHub/Projet-Java-/PROJET/src/View/Member/SelectedFlight.java</file>
         </group>
     </open-files>
 </project-private>

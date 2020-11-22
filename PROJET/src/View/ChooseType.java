@@ -63,7 +63,7 @@ public class ChooseType extends javax.swing.JFrame {
         jPanel1.add(EmployeeBtn);
         EmployeeBtn.setBounds(320, 310, 240, 100);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Projet-Java--2\\map.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/map.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 510, 350);

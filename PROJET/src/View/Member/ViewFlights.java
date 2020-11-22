@@ -8,6 +8,7 @@ package View.Member;
 import View.Member.MainPage;
 import Controller.Flight;
 import Controller.Member;
+import Controller.Ticket;
 import Model.FlightDB;
 import java.sql.Connection;
 import java.sql.ResultSet;

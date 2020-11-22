@@ -7,6 +7,7 @@ package View.Member;
 
 import Controller.Flight;
 import Controller.Member;
+import Controller.Ticket;
 import View.ChooseType;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,13 +28,33 @@ public class MainPage extends javax.swing.JFrame {
     private final Member user;
     /**
      * Creates new form MainPage
+     * 
+     * 
      */
+    
     public MainPage(Member user) {
         initComponents();
         this.user = user;
-        jLabel1.setText("Welcome" +user.getName());
+        jLabel1.setText("Welcome " +user.getName());
         setVisible(true);
+        
+         ViewFlightBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                viewFlightBtnActionPerformed(evt);
+            }
+        });
+         
+         SearchFlightBtn.setText("Search for a flight");
+        SearchFlightBtn.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFlightBtnActionPerformed(evt);
+            }
+        });
     }
+    
+    
     
     public MainPage() {
         initComponents();
@@ -43,7 +64,7 @@ public class MainPage extends javax.swing.JFrame {
         
         ViewFlightBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                
                 viewFlightBtnActionPerformed(evt);
             }
         });
@@ -102,7 +123,6 @@ public class MainPage extends javax.swing.JFrame {
         LoginBtn = new javax.swing.JButton();
         SearchFlightBtn = new javax.swing.JButton();
         ViewFlightBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -117,6 +137,11 @@ public class MainPage extends javax.swing.JFrame {
 
         LoginBtn.setBackground(new java.awt.Color(255, 153, 0));
         LoginBtn.setText("LOGIN");
+        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 110, 40));
 
         SearchFlightBtn.setBackground(new java.awt.Color(255, 153, 0));
@@ -129,16 +154,12 @@ public class MainPage extends javax.swing.JFrame {
         ViewFlightBtn.setText("VIEW ALL FLIGHTS");
         getContentPane().add(ViewFlightBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 150, 70));
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setText("BACK");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, 50));
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("What do you want to do today ?");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 420, 60));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Projet-Java--2\\map.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/map.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 520, -1));
 
@@ -149,8 +170,14 @@ public class MainPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+        // TODO add your handling code here:
+        new Login();
+        dispose();
+    }//GEN-LAST:event_LoginBtnActionPerformed
+
  
-      private void viewFlightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFlightBtnActionPerformed
+      private void viewFlightBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
         try {
             // TODO add your handling code here:
             new ViewFlights(user);
@@ -158,18 +185,15 @@ public class MainPage extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        dispose();}
+        dispose();
+      }
 
-       private void searchFlightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFlightBtnActionPerformed
-        // TODO add your handling code here:
-        
-            // TODO add your handling code here:
-            new SearchFlight(user);
+       private void searchFlightBtnActionPerformed(java.awt.event.ActionEvent evt) {           
+            new SearchFlight(this.user);
             dispose();
        }
      
-     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
+     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) { 
         new ChooseType();
         dispose();
     }     
@@ -214,7 +238,6 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JButton LoginBtn;
     private javax.swing.JButton SearchFlightBtn;
     private javax.swing.JButton ViewFlightBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -118,7 +118,7 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(GuestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 160, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Projet-Java--2\\map.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/map.png"))); // NOI18N
         jLabel5.setText("jLabel5");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 510, 320));
 
@@ -150,6 +150,7 @@ public class Login extends javax.swing.JFrame {
         {
             String username = txtuser.getText();
             String password = txtpswd.getText();
+            
             new MainPage(new Member(username, password));                                      
             dispose();
             

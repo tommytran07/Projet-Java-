@@ -43,6 +43,13 @@ public class Member {
         this._age = mbd.getAge(username);
 
     }
+    
+    public Member() {
+        this._name = "Guest";
+        this._username = null;
+        this._password = null;
+        this._age = 0;
+    }
     public String getName() {
         return this._name;
     }
@@ -62,6 +69,14 @@ public class Member {
     public String[] getColNames() throws SQLException
     {
         return mbd.getColums();
+    }
+
+    public void setName(String _name) {
+        this._name = _name;
+    }
+
+    public void setUsername(String _username) {
+        this._username = _username;
     }
     
     public String[] viewMember()

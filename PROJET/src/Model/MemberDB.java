@@ -103,44 +103,13 @@ public class MemberDB {
         return password;
     }
 
-    /**
-     * récupère l'age du membre en fonction de l'username
-     *
-     * @param username
-     * @return
-     */
-    public int getAge(String username) throws MemberException {
 
-        int age = 0;
-        try {
-
-            Connection conn = DriverConnection.getConnection();
-            String query = "SELECT * FROM member WHERE username=?";
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                age = Integer.parseInt(rs.getString("age")); /// On convertit le string en int
-            } else {
-                /// Si le compte n'existe pas, ou bien si l'utilisateur ne rentre rien alors on lance une exception
-                throw new MemberException("Enter valid credentials");
-            }
-            ps.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return age;
-
-    }
-
-    public void newMember(String name, String username, String password, int age) {
+    public void newMember(String name, String username, String password) {
 
         try {
             Connection conn = DriverConnection.getConnection();
 
-            String query = "INSERT INTO member (name, username, password, age) VALUES (?,?,?,?);";
+            String query = "INSERT INTO member (name, username, password) VALUES (?,?,?);";
             PreparedStatement ps = conn.prepareStatement(query);
 
             /**
@@ -151,7 +120,6 @@ public class MemberDB {
             ps.setString(1, name);
             ps.setString(2, username);
             ps.setString(3, password);
-            ps.setInt(4, age);
 
             // on met rien dans les parentheses, pas de query dans la parenthese vu que c'est un preparedstatement
             ps.executeUpdate();
@@ -197,9 +165,8 @@ public class MemberDB {
                 String name = rs.getString("name");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
-                int age = Integer.parseInt(rs.getString("age"));
                 
-                String table[] = {name, username, password, String.valueOf(age)};
+                String table[] = {name, username, password};
                 
             } while (rs.next());
         }

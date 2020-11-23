@@ -5,8 +5,12 @@
  */
 package View.Member;
 
+
+
+
 import View.Member.MainPage;
 import Controller.Flight;
+import Controller.Guest;
 import Controller.Member;
 import Controller.Ticket;
 import java.util.ArrayList;
@@ -16,23 +20,42 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import projet.DriverConnection;
 
-
 /**
  *
  * @author Tommy
  */
 public class SearchFlight extends javax.swing.JFrame {
+
     private final Member member;
+    private final Guest guest;
     /**
      * Creates new form SearchFlight
      */
     public SearchFlight(Member member) {
         this.member = member;
+        this.guest = null;
+        
         initComponents();
         findFlight();
         setVisible(true);
+
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+
+    }
+
+    public SearchFlight(Guest guest) {
+        this.guest = guest;
+        this.member = null;
         
-        
+        initComponents();
+        findFlight();
+        setVisible(true);
+
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -41,57 +64,60 @@ public class SearchFlight extends javax.swing.JFrame {
         });
         
     }
-    
     public SearchFlight() {
         this.member = null;
+        this.guest = null;
+        System.out.println("Salut " +this.member.getName());
         initComponents();
         findFlight();
         setVisible(true);
+        
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
     }
 
-   
-    
     public ArrayList<Flight> flightList(String City, String City2, String Date, String Date2, String classe) {
         ArrayList<Flight> flightList = new ArrayList<Flight>();
         Statement st;
         ResultSet rs;
-        
-        
+
         try {
-            
+
             Connection conn = DriverConnection.getConnection();
-            
+
             st = conn.createStatement();
-            String searchQuery = "SELECT * FROM `flights` WHERE `dcity` LIKE '%"+City+"%' AND `acity` LIKE '%"+City2+"%' AND `ddate` LIKE '%"+Date+"%' AND `adate` LIKE '%"+Date2+"%' AND `class` LIKE '%"+classe+"%' ";
-            
+            String searchQuery = "SELECT * FROM `flights` WHERE `dcity` LIKE '%" + City + "%' AND `acity` LIKE '%" + City2 + "%' AND `ddate` LIKE '%" + Date + "%' AND `adate` LIKE '%" + Date2 + "%' AND `class` LIKE '%" + classe + "%' ";
+
             rs = st.executeQuery(searchQuery);
             Flight flight;
-            
-            while(rs.next()) {
-                
-                flight = new Flight(rs.getString("dcity"), rs.getString("acity"), rs.getString("ddate"), rs.getString("adate"), Integer.parseInt(rs.getString("flightno"))
-                        , rs.getString("dtime"), rs.getString("atime"), Double.parseDouble(rs.getString("price")), rs.getString("class"));
-                
+
+            while (rs.next()) {
+
+                flight = new Flight(rs.getString("dcity"), rs.getString("acity"), rs.getString("ddate"), rs.getString("adate"), Integer.parseInt(rs.getString("flightno")),
+                         rs.getString("dtime"), rs.getString("atime"), Double.parseDouble(rs.getString("price")), rs.getString("class"));
+
                 flightList.add(flight);
             }
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println("");
         }
-        
-        
+
         return flightList;
     }
-    
+
     public void findFlight() {
-        ArrayList<Flight> flightList = flightList(jTextField1.getText(), jTextField2.getText(),jTextField3.getText(), jTextField4.getText(), (String)jComboBox1.getSelectedItem());
+        ArrayList<Flight> flightList = flightList(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), (String) jComboBox1.getSelectedItem());
         DefaultTableModel model = new DefaultTableModel();
-        
+
         model.setColumnIdentifiers(new Object[]{"Flight no", "Departure city", "Arrival city", "Departure date", "Arrival date", "Departure time", "Arrival time", "Price", "Class"});
         Object[] row = new Object[9];
-        
-        for (int i = 0; i < flightList.size() ; i++) {
-            
+
+        for (int i = 0; i < flightList.size(); i++) {
+
             row[0] = flightList.get(i).getFlightno();
             row[1] = flightList.get(i).getDcity();
             row[2] = flightList.get(i).getAcity();
@@ -101,12 +127,13 @@ public class SearchFlight extends javax.swing.JFrame {
             row[6] = flightList.get(i).getAtime();
             row[7] = flightList.get(i).getPrice();
             row[8] = flightList.get(i).getFclass();
-            
+
             model.addRow(row);
         }
         jTable1.setModel(model);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -247,20 +274,20 @@ public class SearchFlight extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-            findFlight();
+        findFlight();
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        if(member == null) {
-            new MainPage();
-        }
-        else {
-        new MainPage(this.member);
+        if (member == null) {
+            new MainPage(this.guest);
+        } 
+        if (guest == null) {
+            new MainPage(this.member);
         }
         dispose();
     }
-    
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -273,24 +300,14 @@ public class SearchFlight extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    
+
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
-        SelectedFlight selectedFlight = new SelectedFlight(member);
+
         TableModel model = jTable1.getModel();
+
         
-        String name = member.getName();
-        
-        //String guest = "Guest";
-        /*
-        if(member.getName().equals(null)){
-            member.setName("Guest");
-        }
-        else{
-          name = member.getName();
-        }
-        */
         String flightno = model.getValueAt(index, 0).toString();
         String dcity = model.getValueAt(index, 1).toString();
         String acity = model.getValueAt(index, 2).toString();
@@ -300,47 +317,63 @@ public class SearchFlight extends javax.swing.JFrame {
         String atime = model.getValueAt(index, 6).toString();
         double price = Double.parseDouble(model.getValueAt(index, 7).toString());
         String fclass = model.getValueAt(index, 8).toString();
+
+        if (member == null) {
+            SelectedFlight selectedFlight = new SelectedFlight(this.guest);
+
+            String name = guest.getName();
+
+            selectedFlight.flightnoLabel.setText(flightno);
+            selectedFlight.dcityLabel.setText(dcity);
+            selectedFlight.acityLabel.setText(acity);
+            selectedFlight.ddateLabel.setText(ddate);
+            selectedFlight.adateLabel.setText(adate);
+            selectedFlight.dtimeLabel.setText(dtime);
+            selectedFlight.atimeLabel.setText(atime);
+            selectedFlight.priceLabel.setText(String.valueOf(price));
+            selectedFlight.fclassLabel.setText(fclass);
+            selectedFlight.customerName.setText(name);
+            
+        } 
         
-        selectedFlight.setVisible(true);
-        selectedFlight.pack();
-        selectedFlight.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        selectedFlight.flightnoLabel.setText(flightno);
-        selectedFlight.dcityLabel.setText(dcity);
-        selectedFlight.acityLabel.setText(acity);
-        selectedFlight.ddateLabel.setText(ddate);
-        selectedFlight.adateLabel.setText(adate);
-        selectedFlight.dtimeLabel.setText(dtime);
-        selectedFlight.atimeLabel.setText(atime);
-        selectedFlight.priceLabel.setText(String.valueOf(price));
-        selectedFlight.fclassLabel.setText(fclass);
-        
-        
-        
-        selectedFlight.customerName.setText(name);
+        if (guest == null) {
+            SelectedFlight selectedFlight = new SelectedFlight(this.member);
+
+            String name = member.getName();
+            selectedFlight.flightnoLabel.setText(flightno);
+            selectedFlight.dcityLabel.setText(dcity);
+            selectedFlight.acityLabel.setText(acity);
+            selectedFlight.ddateLabel.setText(ddate);
+            selectedFlight.adateLabel.setText(adate);
+            selectedFlight.dtimeLabel.setText(dtime);
+            selectedFlight.atimeLabel.setText(atime);
+            selectedFlight.priceLabel.setText(String.valueOf(price));
+            selectedFlight.fclassLabel.setText(fclass);
+            selectedFlight.customerName.setText(name);
+        }
+
+        //selectedFlight.setVisible(true);
+        //selectedFlight.pack();
+        //selectedFlight.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         /*
         if (member.getName().equals(null)) {
             member.setName("Guest");
             selectedFlight.customerName.setText(name);
         }
-        */
-        
-        
-        
+         */
         dispose();
     }//GEN-LAST:event_selectBtnActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
-    
     //public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-    /*
+     */
+ /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -360,12 +393,11 @@ public class SearchFlight extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        //java.awt.EventQueue.invokeLater(new Runnable() {
-          //  public void run() {
-            //    new SearchFlight().setVisible(true);
-          //  }
-        //});
-        
+    //java.awt.EventQueue.invokeLater(new Runnable() {
+    //  public void run() {
+    //    new SearchFlight().setVisible(true);
+    //  }
+    //});
     //}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -48,15 +48,7 @@ public class PROJET {
             }
         });
 */
-        //NewJFrame nj = new NewJFrame();
-        //nj.setVisible(true);
-        /*
-        MemberDB mdb = new MemberDB();
-        System.out.println(mdb.getPassword("serenatay"));
-        System.out.println(mdb.getAge("serenatay"));
-        //mdb.newMember("tommytran", "coucou", 27);
-        mdb.newMember("subekones", "sube", 30);
-        */
+        
         new ChooseType();
         
     }

@@ -19,9 +19,8 @@ public class Ticket {
     private String _atime;
     private String _fclass;
     private double _price;
-    private int _seats;
     
-    public Ticket(String name, String flightno, String dcity, String acity, String ddate, String dtime, String atime, String fclass, double price, int seats) {
+    public Ticket(String name, String flightno, String dcity, String acity, String ddate, String dtime, String atime, String fclass, double price) {
         _name = name;
         _flightno = flightno;
         _dcity = dcity;
@@ -31,7 +30,6 @@ public class Ticket {
         _atime = atime;
         _fclass = fclass;
         _price = price;
-        _seats = seats;
     }
 
     public String getName() {
@@ -106,12 +104,6 @@ public class Ticket {
         this._price = _price;
     }
 
-    public int getSeats() {
-        return _seats;
-    }
-
-    public void setSeats(int _seats) {
-        this._seats = _seats;
-    }
+    
     
 }

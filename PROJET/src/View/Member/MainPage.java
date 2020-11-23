@@ -5,7 +5,16 @@
  */
 package View.Member;
 
+
+import Controller.*;
+import View.*;
+import java.sql.*;
+import java.util.*;
+import projet.*;
+
+/*
 import Controller.Flight;
+import Controller.Guest;
 import Controller.Member;
 import Controller.Ticket;
 import View.ChooseType;
@@ -18,7 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import projet.DriverConnection;
-
+*/
 /**
  *
  * @author Tommy
@@ -26,6 +35,7 @@ import projet.DriverConnection;
 public class MainPage extends javax.swing.JFrame {
 
     private final Member user;
+    private final Guest guest;
     /**
      * Creates new form MainPage
      * 
@@ -35,6 +45,7 @@ public class MainPage extends javax.swing.JFrame {
     public MainPage(Member user) {
         initComponents();
         this.user = user;
+        this.guest = null;
         jLabel1.setText("Welcome " +user.getName());
         setVisible(true);
         
@@ -59,6 +70,7 @@ public class MainPage extends javax.swing.JFrame {
     public MainPage() {
         initComponents();
         this.user = null;
+        this.guest = null;
         setVisible(true);
         
         
@@ -79,6 +91,30 @@ public class MainPage extends javax.swing.JFrame {
         });
         
         
+        
+    }
+    
+    public MainPage(Guest guest) {
+        initComponents();
+        this.user = null;
+        this.guest = guest;
+        setVisible(true);
+        
+         ViewFlightBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                viewFlightBtnActionPerformed(evt);
+            }
+        });
+        
+        
+        SearchFlightBtn.setText("Search for a flight");
+        SearchFlightBtn.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFlightBtnActionPerformed(evt);
+            }
+        });
         
     }
 
@@ -179,8 +215,13 @@ public class MainPage extends javax.swing.JFrame {
  
       private void viewFlightBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
         try {
-            // TODO add your handling code here:
-            new ViewFlights(user);
+            if (guest == null) {
+                 new ViewFlights(user);
+            }
+            if (user == null) {
+                new ViewFlights(guest);
+            }
+           
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -189,8 +230,17 @@ public class MainPage extends javax.swing.JFrame {
       }
 
        private void searchFlightBtnActionPerformed(java.awt.event.ActionEvent evt) {           
-            new SearchFlight(this.user);
+           
+           if (guest == null){
+               new SearchFlight(this.user);
             dispose();
+           }
+           
+           if (user == null) {
+               new SearchFlight(this.guest);
+               dispose();
+           }
+           
        }
      
      private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) { 

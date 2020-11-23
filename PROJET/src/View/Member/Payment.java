@@ -5,6 +5,15 @@
  */
 package View.Member;
 
+import Controller.*;
+import View.*;
+import java.sql.*;
+import java.util.*;
+import javax.swing.*;
+import projet.*;
+
+/*
+import Controller.Guest;
 import Controller.Member;
 import Controller.Ticket;
 import java.sql.Connection;
@@ -13,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import projet.DriverConnection;
-
+*/
 /**
  *
  * @author Tommy
@@ -22,6 +31,7 @@ public class Payment extends javax.swing.JFrame {
 
     private final Member member;
     private final Ticket ticket;
+    private final Guest guest;
 
     /**
      * Creates new form Payment
@@ -29,13 +39,23 @@ public class Payment extends javax.swing.JFrame {
     public Payment(Member member, Ticket ticket) {
         this.member = member;
         this.ticket = ticket;
+        this.guest = null;
         initComponents();
         setVisible(true);
     }
 
+    public Payment(Guest guest, Ticket ticket) {
+        this.member = null;
+        this.guest = guest;
+        this.ticket = ticket;
+        initComponents();
+        setVisible(true);
+    }
+    
     public Payment() {
         this.member = null;
         this.ticket = null;
+        this.guest = null;
         initComponents();
         setVisible(true);
     }
@@ -151,8 +171,8 @@ public class Payment extends javax.swing.JFrame {
             Connection connection = DriverConnection.getConnection();
 
 
-            PreparedStatement pst = connection.prepareStatement("INSERT INTO `ticket`(`name`, `flightno`, `dcity`, `acity`, `ddate`, `dtime`, `atime`, `class`, `price`, `seats`) VALUES "
-                    + "('" + ticket.getName() + "','" + ticket.getFlightno() + "','" + ticket.getDcity() + "','" + ticket.getAcity() + "','" + ticket.getDdate() + "','" + ticket.getDtime() + "','" + ticket.getAtime() + "','" + ticket.getFclass() + "','" + ticket.getPrice() + "','" + ticket.getSeats() + "')");
+            PreparedStatement pst = connection.prepareStatement("INSERT INTO `ticket`(`name`, `flightno`, `dcity`, `acity`, `ddate`, `dtime`, `atime`, `class`, `price`) VALUES "
+                    + "('" + ticket.getName() + "','" + ticket.getFlightno() + "','" + ticket.getDcity() + "','" + ticket.getAcity() + "','" + ticket.getDdate() + "','" + ticket.getDtime() + "','" + ticket.getAtime() + "','" + ticket.getFclass() + "','" + ticket.getPrice() + "')");
 
             //PreparedStatement pst = connection.prepareStatement("INSERT INTO `ticket`(`name`, `flightno`, `dcity`, `acity`, `ddate`, `dtime`, `atime`, `class`, `price`, `seats`) VALUES (?,?,?,?,?,?,?,?,?,?) ");
             /*
@@ -175,6 +195,8 @@ public class Payment extends javax.swing.JFrame {
             pst.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Ticket booked ! ");
+            new SearchFlight(this.member);
+            dispose();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -183,7 +205,7 @@ public class Payment extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        new SelectedFlight(this.member);
+        new SelectedFlight(this.member, this.ticket);
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 

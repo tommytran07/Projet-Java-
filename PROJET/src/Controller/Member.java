@@ -28,7 +28,6 @@ public class Member {
     private String _name;
     private String _username;
     private String _password;
-    private int _age;
 
     /**
      * Un compte est défini par son username et son mdp, on s'en fout de l'age
@@ -40,7 +39,6 @@ public class Member {
         this._name = mbd.getName(username);
         this._username = username;
         this._password = password;
-        this._age = mbd.getAge(username);
 
     }
     
@@ -48,7 +46,6 @@ public class Member {
         this._name = "Guest";
         this._username = null;
         this._password = null;
-        this._age = 0;
     }
     public String getName() {
         return this._name;
@@ -62,9 +59,6 @@ public class Member {
         return this._password;
     }
     
-    public int getAge() {
-        return this._age;
-    }
     
     public String[] getColNames() throws SQLException
     {
@@ -81,11 +75,10 @@ public class Member {
     
     public String[] viewMember()
     {
-        String[] member = new String[4];
+        String[] member = new String[3];
         member[0] = String.valueOf(_name);
         member[1] = String.valueOf(_username);
         member[2] = String.valueOf(_password);
-        member[3] = String.valueOf(_age);
         
         return member;
     }

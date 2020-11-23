@@ -125,7 +125,7 @@ public class MainPageEmployee extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         LoginBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -157,13 +157,13 @@ public class MainPageEmployee extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
+        jPanel1.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
 
         LoginBtn.setBackground(new java.awt.Color(255, 153, 0));
         LoginBtn.setText("Login");
@@ -396,11 +396,11 @@ public class MainPageEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_arrivalCityTxtFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         new HomePageEmployee(this.employee);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,13 +443,13 @@ public class MainPageEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField arrivalCityTxtField;
     private javax.swing.JTextField arrivalDateTxtField;
     private javax.swing.JTextField arrivalTimeTxtField;
+    private javax.swing.JButton backBtn;
     private javax.swing.JTextField classTxtField;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField departureCityTxtField;
     private javax.swing.JTextField departureDateTxtField;
     private javax.swing.JTextField departureTimeTxtField;
     private javax.swing.JTextField flightNoTxtField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

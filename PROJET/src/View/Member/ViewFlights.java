@@ -7,6 +7,7 @@ package View.Member;
 
 import View.Member.MainPage;
 import Controller.Flight;
+import Controller.Guest;
 import Controller.Member;
 import Controller.Ticket;
 import Model.FlightDB;
@@ -29,12 +30,22 @@ import projet.DriverConnection;
  */
 public class ViewFlights extends javax.swing.JFrame {
     private Member user;
+    private Guest guest;
     /**
      * Creates new form ViewFlights
      */
     public ViewFlights(Member user) throws SQLException {
         this.user = user;
+        this.guest = null;
         initComponents();        
+        showFlightInTable();
+        setVisible(true);
+    }
+    
+    public ViewFlights(Guest guest) throws SQLException {
+        this.user = null;
+        this.guest = guest;
+        initComponents();
         showFlightInTable();
         setVisible(true);
     }
@@ -219,7 +230,7 @@ public class ViewFlights extends javax.swing.JFrame {
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
         // TODO add your handling code here:
         if(user == null) {
-            new MainPage();
+            new MainPage(this.guest);
         }
         else {
         new MainPage(this.user);

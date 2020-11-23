@@ -5,6 +5,14 @@
  */
 package View.Member;
 
+import Controller.*;
+import View.*;
+import projet.*;
+import java.sql.*;
+import javax.swing.*;
+
+/*
+import Controller.Guest;
 import View.Member.MainPage;
 import Controller.Member;
 import View.ChooseType;
@@ -12,6 +20,7 @@ import View.Register;
 import java.sql.*;
 import javax.swing.*;
 import projet.MemberException;
+*/
 /**
  *
  * @author Tommy
@@ -180,16 +189,11 @@ public class Login extends javax.swing.JFrame {
 
     private void GuestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuestBtnActionPerformed
         // TODO add your handling code here:
-        new MainPage();
+        new MainPage(new Guest("Guest"));
         dispose();
     }//GEN-LAST:event_GuestBtnActionPerformed
         
 
-                
-
-                                   
-
-  
                                     
     /**
      * @param args the command line arguments

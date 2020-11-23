@@ -5,6 +5,7 @@
  */
 package View.Employee;
 
+import Controller.Employee;
 import Controller.Flight;
 import Controller.Ticket;
 import java.sql.Connection;
@@ -22,12 +23,20 @@ import projet.DriverConnection;
  * @author Tommy
  */
 public class MemberRecords extends javax.swing.JFrame {
-
+    private Employee employee;
     /**
      * Creates new form MemberRecords
      */
+    public MemberRecords(Employee employee) throws SQLException {
+        initComponents();
+        this.employee = employee;
+        showRecordsInTable();
+        setVisible(true);
+    }
+    
     public MemberRecords() throws SQLException {
         initComponents();
+        this.employee = null;
         showRecordsInTable();
         setVisible(true);
     }
@@ -46,7 +55,7 @@ public class MemberRecords extends javax.swing.JFrame {
             while(rs.next()) {
                 
                 ticket = new Ticket(rs.getString("name"), rs.getString("flightno"), rs.getString("dcity"), rs.getString("acity"), rs.getString("ddate")
-                        , rs.getString("dtime"), rs.getString("atime"), rs.getString("class"), Double.parseDouble(rs.getString("price")), Integer.parseInt(rs.getString("seats")));
+                        , rs.getString("dtime"), rs.getString("atime"), rs.getString("class"), Double.parseDouble(rs.getString("price")) );
                 
                 ticketList.add(ticket);
             }
@@ -66,8 +75,8 @@ public class MemberRecords extends javax.swing.JFrame {
         ArrayList<Ticket> ticketList = getTicketList();
         DefaultTableModel model = new DefaultTableModel();
         
-        model.setColumnIdentifiers(new Object[]{"Name", "Flight no", "Departure city", "Arrival city", "Departure date", "Departure time", "Arrival time", "Class", "Price", "Seats"});
-        Object[] row = new Object[10];
+        model.setColumnIdentifiers(new Object[]{"Name", "Flight no", "Departure city", "Arrival city", "Departure date", "Departure time", "Arrival time", "Class", "Price"});
+        Object[] row = new Object[9];
         
         for (int i = 0; i < ticketList.size() ; i++) {
             
@@ -80,7 +89,6 @@ public class MemberRecords extends javax.swing.JFrame {
             row[6] = ticketList.get(i).getAtime();
             row[7] = ticketList.get(i).getFclass();
             row[8] = ticketList.get(i).getPrice();
-            row[9] = ticketList.get(i).getSeats();
             
             model.addRow(row);
         }
@@ -97,37 +105,38 @@ public class MemberRecords extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Flight no", "Departure city", "Arrival city", "Departure date", "Departure time", "E.T.A", "Class", "Price", "Seats"
+                "Name", "Flight no", "Departure city", "Arrival city", "Departure date", "Departure time", "E.T.A", "Class", "Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -136,19 +145,33 @@ public class MemberRecords extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(52, 52, 52)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(106, Short.MAX_VALUE))
         );
@@ -156,15 +179,23 @@ public class MemberRecords extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new HomePageEmployee(this.employee);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    /*
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -184,6 +215,7 @@ public class MemberRecords extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -194,8 +226,10 @@ public class MemberRecords extends javax.swing.JFrame {
             }
         });
     }
+*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
